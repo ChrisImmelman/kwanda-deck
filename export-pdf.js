@@ -47,9 +47,9 @@ const SLIDE_HEIGHT = 810;
 
   console.log('Generating PDF...');
 
-  // Build PDF using puppeteer's built-in PDF generation from a local HTML page
-  const imgTags = screenshots.map(f =>
-    `<img src="file://${f}">`
+  // Build PDF using background-image divs to avoid sub-pixel img gaps
+  const pages = screenshots.map(f =>
+    `<div class="slide" style="background-image:url('file://${f}')"></div>`
   ).join('\n');
 
   const html = `<!DOCTYPE html>
@@ -58,19 +58,19 @@ const SLIDE_HEIGHT = 810;
 <style>
   @page { margin: 0; size: ${SLIDE_WIDTH}px ${SLIDE_HEIGHT}px; }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  html { background:transparent; }
-  body { margin:0; padding:0; background:transparent; width:${SLIDE_WIDTH}px; }
-  img {
+  html, body { margin:0; padding:0; background:#1c3327; }
+  .slide {
     width:${SLIDE_WIDTH}px;
     height:${SLIDE_HEIGHT}px;
-    display:block;
+    background-size:${SLIDE_WIDTH}px ${SLIDE_HEIGHT}px;
+    background-repeat:no-repeat;
+    background-position:top left;
     page-break-after:always;
     page-break-inside:avoid;
-    margin-bottom:-1px;
   }
 </style>
 </head>
-<body>${imgTags}</body>
+<body>${pages}</body>
 </html>`;
 
   const htmlFile = path.join(tmpDir, 'slides.html');
