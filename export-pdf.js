@@ -58,8 +58,16 @@ const SLIDE_HEIGHT = 810;
 <style>
   @page { margin: 0; size: ${SLIDE_WIDTH}px ${SLIDE_HEIGHT}px; }
   *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-  html, body { margin:0; padding:0; background:#000; width:${SLIDE_WIDTH}px; }
-  img { width:${SLIDE_WIDTH}px; height:${SLIDE_HEIGHT}px; display:block; page-break-after:always; page-break-inside:avoid; }
+  html { background:transparent; }
+  body { margin:0; padding:0; background:transparent; width:${SLIDE_WIDTH}px; }
+  img {
+    width:${SLIDE_WIDTH}px;
+    height:${SLIDE_HEIGHT}px;
+    display:block;
+    page-break-after:always;
+    page-break-inside:avoid;
+    margin-bottom:-1px;
+  }
 </style>
 </head>
 <body>${imgTags}</body>
@@ -72,9 +80,8 @@ const SLIDE_HEIGHT = 810;
   await pdfPage.goto(`file://${htmlFile}`, { waitUntil: 'networkidle0' });
   await pdfPage.pdf({
     path: OUTPUT,
-    width: `${SLIDE_WIDTH}px`,
-    height: `${SLIDE_HEIGHT}px`,
     printBackground: true,
+    preferCSSPageSize: true,
     margin: { top: 0, right: 0, bottom: 0, left: 0 }
   });
 
