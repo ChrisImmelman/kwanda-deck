@@ -27,7 +27,7 @@
       width: 100%; height: 100%;
       overflow: hidden;
       font-family: 'DM Sans', sans-serif;
-      background: var(--green);
+      background: none;
     }
 
     /* ─── SLIDE SHELL ──────────────────────────────────────────── */
@@ -153,9 +153,7 @@
 
     /* ─── PROGRESS BAR ──────────────────────────────────────────── */
     #progress {
-      position: fixed; bottom: 0; left: 0;
-      height: 2px; background: var(--orange);
-      transition: width 0.45s ease; z-index: 200;
+      display: none;
     }
 
     /* ─── NAV ───────────────────────────────────────────────────── */
@@ -417,7 +415,7 @@
         <div class="card" style="display:flex; gap:16px; align-items:flex-start;">
           <div class="icon" style="flex-shrink:0; margin-bottom:0;">🔒</div>
           <div>
-            <div class="h3" style="margin-bottom:7px; font-size:clamp(15px,1.35vw,19px);">Best in class memory</div>
+            <div class="h3" style="margin-bottom:7px; font-size:clamp(15px,1.35vw,19px);">Best-in-class memory</div>
             <p class="body muted">Kwanda deploys its proprietary best-in-class Cortex system to radically improve agent memory. Cortex ranks third in the world on the LongMemEval Benchmark.</p>
           </div>
         </div>
@@ -473,27 +471,35 @@
           </div>
         </div>
 
-        <!-- Circular flywheel -->
+        <!-- Circular flywheel (5 nodes at 72° intervals, starting top) -->
+        <!-- Arcs leave a 15° gap at each node so arrows never touch labels -->
+        <!-- Node angles from +x axis: N0=270° N1=342° N2=54° N3=126° N4=198° -->
+        <!-- Arc endpoints offset ±15° from each node: -->
+        <!--   Arc 0→1: (168,58)→(221,96)   Arc 1→2: (235,140)→(215,202) -->
+        <!--   Arc 2→3: (177,229)→(113,229)  Arc 3→4: (75,202)→(55,140) -->
+        <!--   Arc 4→0: (70,96)→(122,58)                                  -->
         <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 16px; flex-shrink:0;">
           <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:14px;">The Flywheel</div>
-          <div style="position:relative; width:260px; height:260px;">
-            <svg width="260" height="260" viewBox="0 0 260 260" style="position:absolute; top:0; left:0;">
-              <circle cx="130" cy="130" r="90" fill="none" stroke="rgba(28,51,39,0.15)" stroke-width="2" stroke-dasharray="6 4"/>
-              <path d="M 130 40 A 90 90 0 0 1 220 130" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
-              <path d="M 220 130 A 90 90 0 0 1 130 220" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
-              <path d="M 130 220 A 90 90 0 0 1 40 130" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
-              <path d="M 40 130 A 90 90 0 0 1 130 40" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
+          <div style="position:relative; width:290px; height:290px;">
+            <svg width="290" height="290" viewBox="0 0 290 290" style="position:absolute; top:0; left:0;">
               <defs>
-                <marker id="arr2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
                   <path d="M0,0 L6,3 L0,6 Z" fill="var(--orange)"/>
                 </marker>
               </defs>
+              <circle cx="145" cy="145" r="90" fill="none" stroke="rgba(28,51,39,0.15)" stroke-width="2" stroke-dasharray="6 4"/>
+              <path d="M 168 58  A 90 90 0 0 1 221 96"  fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
+              <path d="M 235 140 A 90 90 0 0 1 215 202" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
+              <path d="M 177 229 A 90 90 0 0 1 113 229" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
+              <path d="M 75  202 A 90 90 0 0 1 55  140" fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
+              <path d="M 70  96  A 90 90 0 0 1 122 58"  fill="none" stroke="var(--orange)" stroke-width="2" marker-end="url(#arr2)"/>
             </svg>
-            <!-- 4 node labels positioned outside the circle -->
-            <div style="position:absolute; top:4px; left:50%; transform:translateX(-50%); text-align:center; font-size:11px; font-weight:600; color:var(--green); background:var(--cream); padding:4px 10px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">Consulting client</div>
-            <div style="position:absolute; top:50%; right:2px; transform:translateY(-50%); text-align:center; font-size:11px; font-weight:600; color:var(--green); background:var(--cream); padding:4px 10px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">AI transformation<br>project</div>
-            <div style="position:absolute; bottom:4px; left:50%; transform:translateX(-50%); text-align:center; font-size:11px; font-weight:600; color:var(--green); background:var(--cream); padding:4px 10px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">Deploy agents</div>
-            <div style="position:absolute; top:50%; left:2px; transform:translateY(-50%); text-align:center; font-size:11px; font-weight:600; color:var(--green); background:var(--cream); padding:4px 10px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">Monthly platform<br>subscription</div>
+            <!-- 5 node labels — positioned outward from each node -->
+            <div style="position:absolute; top:28px; left:50%; transform:translateX(-50%); text-align:center; font-size:10px; font-weight:600; color:var(--green); background:var(--cream); padding:3px 8px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">Consulting client</div>
+            <div style="position:absolute; top:90px; right:2px; text-align:right; font-size:10px; font-weight:600; color:var(--green); background:var(--cream); padding:3px 8px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">Project revenue</div>
+            <div style="position:absolute; bottom:46px; right:2px; text-align:right; font-size:10px; font-weight:600; color:var(--green); background:var(--cream); padding:3px 8px; border-radius:6px; max-width:108px; line-height:1.35; border:1px solid rgba(28,51,39,0.15);">Solve recurring problems with agents</div>
+            <div style="position:absolute; bottom:46px; left:2px; text-align:left; font-size:10px; font-weight:600; color:var(--green); background:var(--cream); padding:3px 8px; border-radius:6px; white-space:nowrap; border:1px solid rgba(28,51,39,0.15);">Recurring revenue</div>
+            <div style="position:absolute; top:90px; left:2px; text-align:left; font-size:10px; font-weight:600; color:var(--green); background:var(--cream); padding:3px 8px; border-radius:6px; max-width:108px; line-height:1.35; border:1px solid rgba(28,51,39,0.15);">Deploy agent skills to solve new problems</div>
           </div>
         </div>
 
@@ -522,21 +528,21 @@
       </div>
       <div style="display:flex; flex-direction:column; gap:14px;">
         <div class="g3">
-          <div class="card" style="padding:16px;">
+          <div class="card" style="padding:16px; background:rgba(255,255,255,0.13);">
             <div style="width:44px; height:44px; border-radius:50%; overflow:hidden; margin-bottom:10px; flex-shrink:0;">
               <img src="kieran.jpeg" alt="Kieran Donnelly" style="width:100%; height:100%; object-fit:cover;">
             </div>
-            <div class="h3" style="margin-bottom:2px; font-size:clamp(13px,1.1vw,15px);">Kieran Donnelly</div>
+            <div class="h3" style="margin-bottom:2px; font-size:clamp(13px,1.1vw,15px); color:rgba(255,255,255,0.95);">Kieran Donnelly</div>
             <div style="font-size:10px; font-weight:700; letter-spacing:0.07em; color:var(--orange); text-transform:uppercase; margin-bottom:6px;">Co-Founder</div>
-            <p class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">MEng and BSc in Data Science. Completed a thesis on object tracking in video for a drone startup at Sony in Sweden. Subsequently spent over five years at Explore AI in various lead roles before building his own AI automation consultancy, currently based in Amsterdam.</p>
+            <p class="body" style="font-size:clamp(11px,0.85vw,12.5px); color:rgba(255,255,255,0.75); font-weight:600;">Accomplished solopreneur and technologist with BSc engineering and MSc data science degrees. Founded drone videography agency Sky Reel and AI automation consultancy Why Content. 5+ years at ExploreAI educating 1,000s of data science students, and a stint at Sony in Sweden working on computer vision algorithms.</p>
           </div>
-          <div class="card" style="padding:16px;">
+          <div class="card" style="padding:16px; background:rgba(255,255,255,0.13);">
             <div style="width:44px; height:44px; border-radius:50%; overflow:hidden; margin-bottom:10px; flex-shrink:0;">
               <img src="chris.jpeg" alt="Chris Immelman" style="width:100%; height:100%; object-fit:cover;">
             </div>
-            <div class="h3" style="margin-bottom:2px; font-size:clamp(13px,1.1vw,15px);">Chris Immelman</div>
+            <div class="h3" style="margin-bottom:2px; font-size:clamp(13px,1.1vw,15px); color:rgba(255,255,255,0.95);">Chris Immelman</div>
             <div style="font-size:10px; font-weight:700; letter-spacing:0.07em; color:var(--orange); text-transform:uppercase; margin-bottom:6px;">Co-Founder</div>
-            <p class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">BComm LLB & Admitted Attorney. Spent five years scaling a South African Fintech from public release to over 80,000 customers, +R250M in transaction value covering over 2 million transactions. Secured and managed corporate clients including MiWay, OUTsurance, PayJoy, Tygerwheel & Tyre, Pepkor and +20 others.</p>
+            <p class="body" style="font-size:clamp(11px,0.85vw,12.5px); color:rgba(255,255,255,0.75); font-weight:600;">BComm LLB & Admitted Attorney. Spent five years scaling a South African Fintech from public release to over 80,000 customers, $14M in transaction value covering over 2 million transactions. Secured and managed corporate clients including MiWay, OUTsurance, PayJoy, Tygerwheel & Tyre, Pepkor and +20 others.</p>
           </div>
           <div class="card" style="padding:16px;">
             <div style="width:44px; height:44px; border-radius:50%; overflow:hidden; margin-bottom:10px; flex-shrink:0;">
@@ -661,9 +667,9 @@
         <div class="card" style="padding:22px;">
           <div class="h3" style="margin-bottom:14px; font-size:clamp(13px,1.1vw,15px);">The Consulting Arm</div>
           <div style="display:flex; flex-direction:column; gap:8px;">
-            <div class="arrow-row"><span class="arr" style="color:var(--orange);">·</span><span class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">R200,000+ generated within the first 8 weeks.</span></div>
+            <div class="arrow-row"><span class="arr" style="color:var(--orange);">·</span><span class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">$15,000+ generated within the first 8 weeks.</span></div>
             <div class="arrow-row"><span class="arr" style="color:var(--orange);">·</span><span class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">5 high-impact AI enablement projects successfully delivered.</span></div>
-            <div class="arrow-row"><span class="arr" style="color:var(--orange);">·</span><span class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">Massive demand across the spectrum — from agile SMEs to R400m+ turnover enterprises.</span></div>
+            <div class="arrow-row"><span class="arr" style="color:var(--orange);">·</span><span class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">Massive demand across the spectrum — from agile SMEs to $25m+ turnover enterprises.</span></div>
             <div class="arrow-row"><span class="arr" style="color:var(--orange);">·</span><span class="body muted" style="font-size:clamp(11px,0.85vw,12.5px);">Consulting engagements are actively leading into long-term SaaS subscribers.</span></div>
           </div>
         </div>
@@ -785,9 +791,7 @@
 
 <!-- ─── NAVIGATION ──────────────────────────────────────────── -->
 <nav id="nav">
-  <button class="nav-btn" id="prevBtn" onclick="go(-1)" disabled>&#8592;</button>
-  <span id="counter">01 / 13</span>
-  <button class="nav-btn" id="nextBtn" onclick="go(1)">&#8594;</button>
+  <span id="counter">1</span>
 </nav>
 
 <div id="progress"></div>
@@ -808,9 +812,7 @@
 
   function updateNav() {
     const pad = n => String(n).padStart(2, '0');
-    document.getElementById('counter').textContent = pad(cur + 1) + ' / ' + pad(total);
-    document.getElementById('prevBtn').disabled = cur === 0;
-    document.getElementById('nextBtn').disabled = cur === total - 1;
+    document.getElementById('counter').textContent = String(cur + 1);
     document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%';
 
     const dark = slides[cur].classList.contains('dark');
@@ -823,7 +825,7 @@
       b.style.borderColor = bdCard;
       b.style.background  = bgCard;
     });
-    document.getElementById('counter').style.color = fgMuted;
+    document.getElementById('counter').style.color = dark ? '#ffffff' : 'rgba(28,51,39,0.85)';
   }
 
   function go(dir) {
