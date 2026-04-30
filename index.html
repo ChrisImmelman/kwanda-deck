@@ -381,7 +381,7 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       05  PRODUCT
+       08  PRODUCT
   ═══════════════════════════════════════════════════════════ -->
   <div class="slide dark state-next">
     <div class="logo"><img src="logo.png" alt="kwanda"></div>
@@ -583,7 +583,40 @@
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       09  GO TO MARKET
+       11  TRACTION
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="slide dark state-next">
+    <div class="logo"><img src="logo.png" alt="kwanda"></div>
+    <div class="content">
+      <div>
+        <div class="label label-orange">Traction</div>
+        <div class="h2">Early signals.<br><span class="serif accent">Three months in.</span></div>
+        <p class="body muted" style="margin-top:12px; max-width:640px;">
+          Kwanda has moved from zero to signed contracts, a live pipeline, and deployed agents — all within the first three months of operation.
+        </p>
+      </div>
+      <div class="g3">
+        <div class="card" style="padding:28px;">
+          <div class="stat">$40K</div>
+          <div class="h3" style="margin-bottom:8px; font-size:clamp(13px,1.2vw,17px);">Signed contracts</div>
+          <p class="body muted">Contracted revenue committed and under agreement with paying clients.</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <div class="stat">$130K</div>
+          <div class="h3" style="margin-bottom:8px; font-size:clamp(13px,1.2vw,17px);">Probability-adjusted pipeline</div>
+          <p class="body muted">Active opportunities weighted by close probability across our current prospect base.</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <div class="stat">35+</div>
+          <div class="h3" style="margin-bottom:8px; font-size:clamp(13px,1.2vw,17px);">Trial agents deployed</div>
+          <p class="body muted">Live agents in the hands of real users, validating the platform in production environments.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       12  GO TO MARKET
   ═══════════════════════════════════════════════════════════ -->
   <div class="slide dark state-next">
     <div class="logo"><img src="logo.png" alt="kwanda"></div>
@@ -787,7 +820,9 @@
 
 <!-- ─── NAVIGATION ──────────────────────────────────────────── -->
 <nav id="nav">
+  <button class="nav-btn" id="btn-prev" onclick="go(-1)" disabled>←</button>
   <span id="counter">1</span>
+  <button class="nav-btn" id="btn-next" onclick="go(1)">→</button>
 </nav>
 
 <div id="progress"></div>
@@ -816,6 +851,8 @@
     const fgMuted  = dark ? 'rgba(255,255,255,0.55)' : 'rgba(28,51,39,0.5)';
     const bgCard   = dark ? 'rgba(255,255,255,0.08)' : 'rgba(28,51,39,0.07)';
     const bdCard   = dark ? 'rgba(255,255,255,0.2)'  : 'rgba(28,51,39,0.2)';
+    document.getElementById('btn-prev').disabled = cur === 0;
+    document.getElementById('btn-next').disabled = cur === total - 1;
     document.querySelectorAll('.nav-btn').forEach(b => {
       b.style.color       = fgSolid;
       b.style.borderColor = bdCard;
